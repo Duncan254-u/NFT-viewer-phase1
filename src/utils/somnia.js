@@ -1,32 +1,22 @@
 import { ethers } from 'ethers';
 
-/**
- * Connects to the user's Ethereum wallet via MetaMask.
- * Returns the provider, signer, and connected account address.
- */
+// Connects to user's wallet via MetaMask
 export async function connectWallet() {
     if (!window.ethereum) {
         alert("Please install MetaMask to use this feature!");
         return null;
     }
 
-    try {
-        const provider = new ethers.BrowserProvider(window.ethereum);
-        const signer = await provider.getSigner();
-        const account = await signer.getAddress();
-        return { provider, signer, account };
-    } catch (error) {
-        console.error("Error connecting wallet:", error);
-        return null;
-    }
+    const provider = new ethers.BrowserProvider(window.ethereum);
+    const signer = await provider.getSigner();
+    const account = await signer.getAddress();
+
+    return { provider, signer, account };
 }
 
-/**
- * Mock NFT fetching function.
- * In a real app, replace with a blockchain or API call.
- */
+// Mock function to get NFTs for an account
 export async function getNFTs(account) {
-    console.log(`Fetching NFTs for account: ${account}`);
+    // In production: Fetch from Somnia API
     return [
         {
             id: 1,
@@ -41,10 +31,8 @@ export async function getNFTs(account) {
     ];
 }
 
-/**
- * Mock XP claim function.
- * In a real app, replace with contract call logic.
- */
+
 export async function claimXP() {
-    alert("XP Claimed successfully!");
+   
+    alert("✅ XP Claimed! (Placeholder function)");
 }
